@@ -1,0 +1,510 @@
+
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>AulaConnect · Inscripción</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+
+    <header>
+        <div class="top">
+            <strong>✦ AulaConnect</strong>
+            <button id="tema" type="button">Cambiar tema</button>
+        </div>
+
+        <p>Inscripción a cursos · Práctica de formularios y validación</p>
+    </header>
+
+    <main id="contenido">
+
+        <section class="intro">
+
+            <span class="eyebrow">
+                UNIDAD 7 · DESARROLLO WEB EN CLIENTE
+            </span>
+
+            <h1>Inscríbete en un curso</h1>
+
+            <p>
+                Completa tus datos, selecciona tu formación y revisa
+                tu solicitud antes de enviarla.
+            </p>
+
+            <ol class="steps" aria-label="Progreso">
+                <li id="indicador-1" aria-current="step">
+                    1. Datos personales
+                </li>
+
+                <li id="indicador-2">
+                    2. Curso y preferencias
+                </li>
+
+                <li id="indicador-3">
+                    3. Confirmación
+                </li>
+            </ol>
+
+        </section>
+
+        <section class="panel">
+
+            <div
+                id="resumen-errores"
+                class="summary"
+                tabindex="-1"
+                role="alert"
+                hidden>
+            </div>
+
+            <form id="inscripcion" name="inscripcion" novalidate>
+
+                <!-- PASO 1: DATOS PERSONALES -->
+
+                <fieldset class="paso" data-paso="1">
+
+                    <legend tabindex="-1">
+                        Paso 1 · Datos personales
+                    </legend>
+
+                    <p class="hint">
+                        Los campos marcados con * son obligatorios.
+                    </p>
+
+                    <div class="grid">
+
+                        <div class="field">
+                            <label for="nombre">Nombre completo *</label>
+
+                            <input
+                                id="nombre"
+                                name="nombre"
+                                required
+                                minlength="2"
+                                maxlength="80"
+                                autocomplete="name"
+                                aria-describedby="nombre-error">
+
+                            <small id="nombre-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="correo">Correo electrónico *</label>
+
+                            <input
+                                id="correo"
+                                name="correo"
+                                type="email"
+                                required
+                                autocomplete="email"
+                                aria-describedby="correo-error">
+
+                            <small id="correo-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="edad">Edad *</label>
+
+                            <input
+                                id="edad"
+                                name="edad"
+                                type="number"
+                                min="18"
+                                max="120"
+                                required
+                                aria-describedby="edad-error">
+
+                            <small id="edad-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="telefono">Teléfono español *</label>
+
+                            <input
+                                id="telefono"
+                                name="telefono"
+                                type="tel"
+                                inputmode="tel"
+                                required
+                                placeholder="612345678"
+                                aria-describedby="telefono-error">
+
+                            <small id="telefono-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="clave">Contraseña *</label>
+
+                            <input
+                                id="clave"
+                                name="clave"
+                                type="password"
+                                required
+                                minlength="8"
+                                autocomplete="new-password"
+                                aria-describedby="clave-error">
+
+                            <small id="clave-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="clave2">
+                                Repite la contraseña *
+                            </label>
+
+                            <input
+                                id="clave2"
+                                name="clave2"
+                                type="password"
+                                required
+                                autocomplete="new-password"
+                                aria-describedby="clave2-error">
+
+                            <small id="clave2-error" class="error"></small>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+                <!-- PASO 2: FORMACIÓN Y PREFERENCIAS -->
+
+                <fieldset class="paso" data-paso="2" hidden>
+
+                    <legend tabindex="-1">
+                        Paso 2 · Formación y preferencias
+                    </legend>
+
+                    <div class="grid">
+
+                        <div class="field">
+                            <label for="curso">Curso *</label>
+
+                            <select
+                                id="curso"
+                                name="curso"
+                                required
+                                aria-describedby="curso-error">
+
+                                <option value="">
+                                    Selecciona un curso
+                                </option>
+
+                                <option value="html">
+                                    HTML y accesibilidad
+                                </option>
+
+                                <option value="javascript">
+                                    JavaScript
+                                </option>
+
+                                <option value="python">
+                                    Python
+                                </option>
+
+                            </select>
+
+                            <small id="curso-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="modalidad">Modalidad *</label>
+
+                            <select
+                                id="modalidad"
+                                name="modalidad"
+                                required
+                                aria-describedby="modalidad-error">
+
+                                <option value="">Selecciona</option>
+                                <option value="online">Online</option>
+                                <option value="presencial">Presencial</option>
+
+                            </select>
+
+                            <small id="modalidad-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="provincia">Provincia *</label>
+
+                            <select
+                                id="provincia"
+                                name="provincia"
+                                required
+                                aria-describedby="provincia-error">
+
+                                <option value="">Selecciona</option>
+                                <option value="ourense">Ourense</option>
+                                <option value="pontevedra">Pontevedra</option>
+                                <option value="coruna">A Coruña</option>
+                                <option value="lugo">Lugo</option>
+
+                            </select>
+
+                            <small id="provincia-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="municipio">Municipio *</label>
+
+                            <select
+                                id="municipio"
+                                name="municipio"
+                                required
+                                disabled
+                                aria-describedby="municipio-error">
+
+                                <option value="">
+                                    Elige primero provincia
+                                </option>
+
+                            </select>
+
+                            <small id="municipio-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="cp">Código postal *</label>
+
+                            <input
+                                id="cp"
+                                name="cp"
+                                inputmode="numeric"
+                                maxlength="5"
+                                required
+                                title="Cinco dígitos"
+                                aria-describedby="cp-error">
+
+                            <small id="cp-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="inicio">
+                                Fecha de inicio preferida *
+                            </label>
+
+                            <input
+                                id="inicio"
+                                name="inicio"
+                                type="date"
+                                required
+                                aria-describedby="inicio-error">
+
+                            <small id="inicio-error" class="error"></small>
+                        </div>
+
+                        <div class="field">
+                            <label for="foto">
+                                Documento opcional (JPG, PNG o PDF; máx. 2 MB)
+                            </label>
+
+                            <input
+                                id="foto"
+                                name="foto"
+                                type="file"
+                                accept=".jpg,.jpeg,.png,.pdf"
+                                aria-describedby="foto-error">
+
+                            <small id="foto-error" class="error"></small>
+
+                            <p id="archivo-info" class="hint"></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="comentarios">Observaciones</label>
+
+                            <textarea
+                                id="comentarios"
+                                name="comentarios"
+                                rows="3"
+                                maxlength="300"></textarea>
+                        </div>
+
+                    </div>
+
+                    <!-- TURNO PREFERIDO -->
+
+                    <fieldset class="subgrupo">
+
+                        <legend>Turno preferido *</legend>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="turno"
+                                value="manana"
+                                required>
+                            Mañana
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="turno"
+                                value="tarde">
+                            Tarde
+                        </label>
+
+                        <small id="turno-error" class="error"></small>
+
+                    </fieldset>
+
+                    <!-- CONDICIONES Y NOVEDADES -->
+
+                    <label class="check">
+                        <input
+                            id="acepta"
+                            name="acepta"
+                            type="checkbox"
+                            required
+                            aria-describedby="acepta-error">
+
+                        He leído la información y acepto las
+                        condiciones de inscripción *
+                    </label>
+
+                    <small id="acepta-error" class="error"></small>
+
+                    <label class="check">
+                        <input
+                            id="novedades"
+                            name="novedades"
+                            type="checkbox">
+
+                        Quiero recibir novedades (opcional)
+                    </label>
+
+                    <p class="hint">
+                        Demostración educativa: no se transmiten
+                        datos personales a un servidor real.
+                    </p>
+
+                </fieldset>
+
+                <!-- PASO 3: REVISIÓN -->
+
+                <fieldset class="paso" data-paso="3" hidden>
+
+                    <legend tabindex="-1">
+                        Paso 3 · Revisión
+                    </legend>
+
+                    <p>
+                        Comprueba los datos antes de finalizar.
+                    </p>
+
+                    <div id="revision" class="review"></div>
+
+                    <p class="hint">
+                        La contraseña no se muestra ni se almacena.
+                    </p>
+
+                </fieldset>
+
+                <!-- BOTONES DE NAVEGACIÓN -->
+
+                <div class="actions">
+
+                    <button
+                        type="button"
+                        id="anterior"
+                        class="secondary"
+                        hidden>
+                        Anterior
+                    </button>
+
+                    <button
+                        type="button"
+                        id="siguiente">
+                        Siguiente
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="enviar"
+                        hidden>
+                        Confirmar inscripción
+                    </button>
+
+                </div>
+
+            </form>
+
+            <div
+                id="estado"
+                role="status"
+                aria-live="polite">
+            </div>
+
+        </section>
+
+        <!-- HERRAMIENTAS PARA PRACTICAR -->
+
+        <aside class="panel tools">
+
+            <h2>Herramientas para practicar</h2>
+
+            <p>
+                Prueba datos válidos, inválidos y valores límite.
+                Utiliza Tab y Enter para comprobar el teclado.
+            </p>
+
+            <div class="actions">
+
+                <button
+                    id="guardar"
+                    type="button"
+                    class="secondary">
+                    Guardar borrador
+                </button>
+
+                <button
+                    id="recuperar"
+                    type="button"
+                    class="secondary">
+                    Recuperar borrador
+                </button>
+
+                <button
+                    id="borrar"
+                    type="button"
+                    class="secondary">
+                    Borrar borrador
+                </button>
+
+                <button
+                    id="reiniciar"
+                    type="button"
+                    class="secondary">
+                    Reiniciar
+                </button>
+
+            </div>
+
+            <p
+                id="almacenamiento"
+                class="hint"
+                role="status">
+            </p>
+
+        </aside>
+
+    </main>
+
+    <footer>
+        Proyecto didáctico · AulaConnect · Sin backend real
+    </footer>
+
+</body>
+
+</html>
