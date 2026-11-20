@@ -1,13 +1,50 @@
 "use strict";
 // AULACONNECT 
 
-const pasos = [...document.querySelectorAll('.paso')];
+const form = document.getElementById("inscripcion");
+
+const pasos = document.querySelectorAll(".paso");
+
+const btnSiguiente = document.getElementById("siguiente");
+const btnAnterior = document.getElementById("anterior");
+const btnEnviar = document.getElementById("enviar");
+
+const resumenErrores = document.getElementById("resumen-errores");
+const revision = document.getElementById("revision");
+const estado = document.getElementById("estado");
+
 let pasoActual = 1;
 
 // BLOQUE 1 · Acceso al DOM y navegación entre pasos.
 function mostrarPaso(numero) {
-  // TODO 1: ocultar los demás pasos y mostrar el seleccionado.
-  // TODO 2: actualizar indicadores, botones y foco del encabezado.
+  
+  pasos.forEach(function (paso)  {
+
+    const numero = Number(paso.dataset.paso);
+
+    paso.hidden = numero !== pasoActual;
+
+
+  }   );
+
+  btnAnterior.hidden = pasoActual === 1;
+
+  btnSiguiente.hidden = pasoActual === 3;
+
+  btnEnviar.hidden = pasoActual !== 3;
+
+  for (let numero = 1; numero <= 3; numero++ ){
+    const indicador = document.getElementById(`indicador-${numero}`);
+
+    if (numero === pasoActual){
+      indicador.setAttribute("aria-current", "step");
+    } else {
+      indicador.removeAttribute("aria-current");
+    }
+  }
+
+
+
 }
 
 // BLOQUE 2 · Validación de campos.
@@ -45,3 +82,38 @@ async function enviarSolicitud() {
 // BLOQUE 8 · Accesibilidad y pruebas.
 // TODO 12: resumen enlazado de errores y gestión de foco.
 // Comprobar: campos vacíos, límites, teclado, formatos incorrectos y doble envío.
+
+btnSiguiente.addEventListener("click", function () {
+
+  if (pasoActual < 3) {
+    pasoActual++;
+    mostrarPaso();
+
+  }
+
+
+});
+
+btnAnterior.addEventListener("click", function () {
+
+  if (pasoActual > 1) {
+    pasoActual--;
+    mostrarPaso();
+
+  }
+
+ 
+
+});
+
+const controles = form.querySelectorAll("input, select, textarea");
+
+controles.forEach(function (campo){
+
+  campo.addEventListener("focus", function (){
+    console.log("FOCUS: ", campo.name);
+  });
+
+
+})
+
